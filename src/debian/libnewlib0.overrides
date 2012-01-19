@@ -1,0 +1,10 @@
+libnewlib0: shlib-with-executable-stack usr/lib/newlib/i486-linux-gnu/lib/libc-newlib.so.0.0.0
+libnewlib0: shlib-with-executable-stack usr/lib/newlib/i486-linux-gnu/lib/libm-newlib.so.0.0.0
+libnewlib0: shlib-with-executable-stack usr/lib/newlib/i486-linux-gnu/lib/libpthread-newlib.so.0.0.0
+libnewlib0: shared-lib-without-dependency-information ./usr/lib/newlib/i486-linux-gnu/lib/libc-newlib.so.0.0.0
+libnewlib0: shared-lib-without-dependency-information ./usr/lib/newlib/i486-linux-gnu/lib/libm-newlib.so.0.0.0
+libnewlib0: shared-lib-without-dependency-information ./usr/lib/newlib/i486-linux-gnu/lib/libpthread-newlib.so.0.0.0
+libnewlib0: shared-lib-without-dependency-information ./usr/lib/newlib/i486-linux-gnu/lib/libthread_db-newlib.so.0.0.0
+libnewlib0: binary-or-shlib-defines-rpath ./usr/lib/newlib/lib/newlib/EUC-JP.so.0.0.0 /usr/lib/newlib/i486-linux-gnu/lib
+libnewlib0: library-not-linked-against-libc ./usr/lib/newlib/lib/newlib/EUC-JP.so.0.0.0
+libnewlib0: missing-depends-line

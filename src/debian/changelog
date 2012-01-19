@@ -1,0 +1,217 @@
+newlib (1.18.0-6.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Add Build-Depends on lzma as it is explicitly used in debian/rules causing
+    FTBFS if missing (Closes: #598277, #608378). Thanks to Loic Minier and
+    Jakub Wilk.
+  * Remove Matthias Klose <doko@debian.org> from Uploaders as requested on
+    #debian-release on IRC. 
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Thu, 30 Dec 2010 22:43:59 +0100
+
+newlib (1.18.0-6) unstable; urgency=low
+
+  * Restrict libnewlib-dev to amd64 armel i386 ia64 powerpc sparc.
+  * Bump Standards-Version to 3.9.1.
+
+ -- Arthur Loiret <aloiret@debian.org>  Sun, 01 Aug 2010 13:38:04 +0000
+
+newlib (1.18.0-5) unstable; urgency=low
+
+  * Make libnewlib-dev Depends on libnewlib0 on i386 only.  Closes: #573765.
+
+ -- Arthur Loiret <aloiret@debian.org>  Sun, 18 Apr 2010 12:28:23 +0000
+
+newlib (1.18.0-4) unstable; urgency=low
+
+  * Backport from Ubuntu:
+    - Build with -fno-stack-protector -U_FORTIFY_SOURCE.
+    - 61_newlib_arm_include.patch, 62_long_double_infinity.patch: Add.
+
+ -- Arthur Loiret <aloiret@debian.org>  Fri, 26 Feb 2010 21:51:50 +0000
+
+newlib (1.18.0-3) unstable; urgency=low
+
+  * debian/rules: Don't set CC in spu configure flags.
+
+ -- Arthur Loiret <aloiret@debian.org>  Thu, 25 Feb 2010 14:20:00 +0000
+
+newlib (1.18.0-2) unstable; urgency=low
+
+  * Build the shared lib on i386 only.
+  * Bump Standards-Version to 3.8.4.
+
+ -- Arthur Loiret <aloiret@debian.org>  Wed, 24 Feb 2010 18:25:37 +0000
+
+newlib (1.18.0-1) unstable; urgency=low
+
+  * New upstream release.
+    - Don't put a tarball in the tarball anymore.  Closes: #538563.
+    - Don't build newlib-mingw32 anymore.  Closes: #542269.
+  * debian/rules: Update accordingly.
+  * debian/control:
+    - Bump Standards-Version to 3.8.3.
+    - Fix newlib-m68hc1x's short description.  Closes: #556962.
+
+ -- Arthur Loiret <aloiret@debian.org>  Tue, 23 Feb 2010 18:37:09 +0000
+
+newlib (1.17.0-3) unstable; urgency=low
+
+  * debian/rules: Fix mingw32 prefix.  Closes: #528027.
+
+ -- Arthur Loiret <aloiret@debian.org>  Sat, 15 Aug 2009 09:54:51 +0000
+
+newlib (1.17.0-2) unstable; urgency=low
+
+  * Disable parallel build (fails for the spu build).
+  * Configure the spu build with --host=powerpc-linux-gnu, not =spu.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 22 Apr 2009 11:33:03 +0100
+
+newlib (1.17.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Merge from Ubuntu (Loic Minier):  Closes: #513595.
+    - Use quilt to apply debian/patches; build-dep on quilt.
+    - New patch, 60_newlib-libgloss-eabi, set objtype to elf for
+      armel/arm-linux-gnueabi; fixes installation for this target.
+      Run autoreconf -fi && rm -rf autom4te.cache.
+    - Install debian/patches/* in /usr/src/newlib/patches.
+  * Build m68hc1x and win32 versions in arch-indep target.
+  * Improve packages description.  Closes: #511635.
+  * Fix configure flags.
+
+ -- Arthur Loiret <aloiret@debian.org>  Mon, 13 Apr 2009 14:33:01 +0000
+
+newlib (1.16.0+cvs20081207-1) unstable; urgency=low
+
+  * Upload to unstable.
+  * New upstream snapshot, taken from CVS 20081207.
+    - Update overrides files.
+  * debian/control: Update Matthias's mail address.
+  * debian/rules:
+    - Don't run parallel build by default.
+    - Fix configure for targets.
+
+ -- Arthur Loiret <arthur.loiret@gmail.com>  Sun, 07 Dec 2008 15:45:47 +0000
+
+newlib (1.16.0-2.1) unstable; urgency=low
+
+  * NMU.
+  * newlib-spu: Add a symlink for the gcc-snapshot sysroot.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 16 Nov 2008 18:10:24 +0100
+
+newlib (1.16.0-3) experimental; urgency=low
+
+  * Upload to experimental.
+  * Build a newlib-m68hc1x and a newlib-mingw32 package:
+    - newlib-m68hc1x Recommends gcc-m68hc1x.
+    - newlib-mingw32 Recommends mingw32.
+    - Install m68hc1x in /usr/m68hc11/.
+    - Install mingw32 in /usr/lib/newlib/i586-mingw32msvc/.
+  * newlib-m68hc1x.overrides, newlib-mingw32.overrides: Add.
+  * Build again main libnewlib0 and libnewlib-dev packages:
+    - Install in /usr/lib/newlib/.
+  * debian/control:
+    - Add new packages.
+    - Make newlib-spu Recommends gcc-spu.
+    - Bump Standards-Version to 3.8.0.
+  * debian/rules:
+    - Update for new packages.
+    - Support DEB_BUILD_OPTIONS=parallel=n.
+    - Depect cpu number and run parallel build by default.
+    - Some improvements.
+  * debian/watch: Add.
+
+ -- Arthur Loiret <arthur.loiret@gmail.com>  Wed, 09 Jul 2008 14:09:00 +0000
+
+newlib (1.16.0-2) unstable; urgency=low
+
+  * debian/control:
+    - Build-Depends on spu packages only on [powerpc ppc64]. Closes: #474894
+    - Build-Depends on texinfo to fix FTBFS (Andreas Jochens). Closes: #475569
+  * debian/rules: Only build spu package on powerpc ppc64.
+
+ -- Arthur Loiret <arthur.loiret@gmail.com>  Mon, 14 Apr 2008 10:01:57 +0000
+
+newlib (1.16.0-1) unstable; urgency=low
+
+  * New upload, we need newlib for Cell/spu targets.
+    This source package will also replace newlib-m68hc1x.
+  * Binary packages built: newlib-spu, newlib-source.
+  * Based on Matthias Klose's work in Ubuntu on the spu toolchain.
+
+ -- Arthur Loiret <arthur.loiret@gmail.com>  Tue, 01 Apr 2008 13:29:08 +0000
+
+newlib (1.14.0-2) unstable; urgency=low
+
+  * Add texinfo to the build dependencies. Closes: #354198.
+
+ -- Shaun Jackman <sjackman@debian.org>  Fri, 24 Feb 2006 14:33:19 -0700
+
+newlib (1.14.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove gcc-3.3 dependency.
+  * Add a watch file.
+  * Update policy version to 3.6.2.2. No changes necessary.
+  * Upstream patch on 2005-09-08 by Jeff Johnston to
+    libc/sys/linux/argp/argp-fs-xinl.c closes: #336704.
+  * Fix "the (in)famous INSTALL = ../ bug." thanks to Paolo Bonzini.
+  * Update the FSF address.
+  * Ignore the lintian warning package-name-doesnt-match-sonames.
+
+ -- Shaun Jackman <sjackman@debian.org>  Sun, 15 Jan 2006 22:16:44 -0700
+
+newlib (1.13.0-2) unstable; urgency=low
+
+  * Remove gcc (<< 4:4.0.0) from Build-Depends.
+    Add gcc-3.3 to Build-Depends. Closes: #324370.
+
+ -- Shaun Jackman <sjackman@debian.org>  Tue, 23 Aug 2005 14:51:05 -0700
+
+newlib (1.13.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Disable multilib. Closes: #318553.
+  * Add gcc (<< 4:4.0.0) to Build-Depends.
+
+ -- Shaun Jackman <sjackman@debian.org>  Tue, 16 Aug 2005 17:33:47 -0700
+
+newlib (1.12.0.20041202-5) unstable; urgency=low
+
+  * Set the architecture of the source package to i386. Closes: #309509.
+  * Add basename, dirname, lchown, and ttyname.
+  * Fix a bug in tzset.
+
+ -- Shaun Jackman <sjackman@debian.org>  Wed, 18 May 2005 13:15:17 -0700
+
+newlib (1.12.0.20041202-4) unstable; urgency=low
+
+  * Add libltdl3-dev to the build dependencies. Closes: #290372.
+  * Change the architecture to i386 only. Closes: #289688. Currently, only the
+    i386 is supported for the Linux target. Other machines need to be added to
+    newlib/libc/sys/linux/machine, which contains some low level assembler.
+
+ -- Shaun Jackman <sjackman@debian.org>  Fri, 14 Jan 2005 11:29:44 -0800
+
+newlib (1.12.0.20041202-3) unstable; urgency=low
+
+  * libthread_db.so.1 is not created on amd64 with gcc-4.0, although I'm not
+    sure why. Closes: #289688.
+
+ -- Shaun Jackman <sjackman@debian.org>  Mon, 10 Jan 2005 08:39:19 -0800
+
+newlib (1.12.0.20041202-2) unstable; urgency=low
+
+  * Add a pkg-config file.
+
+ -- Shaun Jackman <sjackman@debian.org>  Mon,  6 Dec 2004 11:50:05 -0800
+
+newlib (1.12.0.20041202-1) unstable; urgency=low
+
+  * Initial release (closes: #284005).
+
+ -- Shaun Jackman <sjackman@debian.org>  Sat, 13 Nov 2004 11:59:20 -0800
+
