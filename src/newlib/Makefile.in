@@ -1018,10 +1018,10 @@ install-data-local:	install-toollibLIBRARIES
 	else true; fi
 
 # Force makedoc to be built before building info files.
-info-recursive: doc/makedoc
-dvi-recursive: doc/makedoc
-doc/makedoc:
-	cd doc && $(MAKE) all
+#info-recursive: doc/makedoc
+#dvi-recursive: doc/makedoc
+#doc/makedoc:
+#	cd doc && $(MAKE) all
 
 # Multilib support.
 .PHONY: all-multi check-multi mostlyclean-multi clean-multi distclean-multi \
